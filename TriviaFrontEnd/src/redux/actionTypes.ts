@@ -1,0 +1,3 @@
+export const SET_PLAYER = "SET_PLAYER";
+export const CHANGE_SCORE = "CHANGE_SCORE";
+export const UPDATE_QUESTIONS = "UPDATE_QUESTIONS";

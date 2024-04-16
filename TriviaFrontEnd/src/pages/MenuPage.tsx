@@ -1,23 +1,25 @@
 import Card from "../components/Card/Card";
-import styles from "./HomePage.module.scss";
+import styles from "./MenuPage.module.scss";
 import pageStyles from "./AllPages.module.scss";
 import { useEffect, useState } from "react";
-import { fetchQuestion } from "../data";
+import { fetchCategories, fetchQuestion } from "../services/triviaAPI";
 
-interface Props {
-  categoryList: any;
-}
-
-const HomePage = (props: Props) => {
+const MenuPage = () => {
   const difficulties: string[] = ["easy", "medium", "hard", "all"];
   const [selectedDifficulty, setSelectedDifficulty] = useState("none selected");
   const [selectedCategory, setSelectedCategory] = useState([]);
+
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    fetchCategories().then((data: any) => setCategoryList(data));
+  }, []);
 
   useEffect(() => {
     console.log(selectedCategory);
   }, [selectedDifficulty, selectedCategory]);
 
-  console.log(props.categoryList);
+  console.log(categoryList);
 
   const questionFetcher = () => {
     console.log(fetchQuestion("&category=19"));
@@ -32,7 +34,7 @@ const HomePage = (props: Props) => {
         <p>Game difficulty: {selectedDifficulty}</p>
       </section>
       <section className={styles.categorySection}>
-        {props.categoryList.map((category) => {
+        {categoryList.map((category) => {
           return (
             <Card
               text={category.category}
@@ -51,4 +53,4 @@ const HomePage = (props: Props) => {
   );
 };
 
-export default HomePage;
+export default MenuPage;

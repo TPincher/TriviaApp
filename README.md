@@ -71,8 +71,9 @@ Change logs
 
         As there are different numbers of answers to different questions, made the decision to delineate answers with ' --- ' and save them as a string so that they can be stripped out and manipulated. Based on how the trivia API itself works, I think at this point I'll abandon the idea of getting multiple categories into a single game. It can be added back in at a future date if needed.
 
+        Started the front end and hooked up the redux store, actions, actionTypes and reducers. Have only added SET_PLAYER, CHANGE_SCORE and UPDATE_QUESTIONS for now. This is actually a lot less context than I thought I would have to manage, though I am sure more will crop up as I build out the project.
 
-
+        Connected the application with the back-end, can pull all user data successfully. This code will have to change when the project is hosted. I am also questioning how data should be batched and updated - I don't want to make too many unnecassary calls. (Is this where GraphQL would be useful?)
 
 What did you struggle with?
 
