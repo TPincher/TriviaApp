@@ -71,8 +71,26 @@ Change logs
 
         As there are different numbers of answers to different questions, made the decision to delineate answers with ' --- ' and save them as a string so that they can be stripped out and manipulated. Based on how the trivia API itself works, I think at this point I'll abandon the idea of getting multiple categories into a single game. It can be added back in at a future date if needed.
 
+        Started the front end and hooked up the redux store, actions, actionTypes and reducers. Have only added SET_PLAYER, CHANGE_SCORE and UPDATE_QUESTIONS for now. This is actually a lot less context than I thought I would have to manage, though I am sure more will crop up as I build out the project.
 
+        Connected the application with the back-end, can pull all user data successfully. This code will have to change when the project is hosted. I am also questioning how data should be batched and updated - I don't want to make too many unnecassary calls. (Is this where GraphQL would be useful?)
 
+    26/4/2024:
+        Returning to this project after looking into PyTorch and associated Python libraries for job interview. Spent a few hours getting back into the project.
+
+        Added in two new sections to the Redux store: updateCategory and updateDifficulty.
+
+        The landing page is now completed, but not styled. A user can load all users and create a new user. Error handling (toast notifications?) will be needed for negative returns from the backend.
+
+        Player can select a user profile and start the game.
+
+        **Next**
+        Remove the local state for difficulty and category, and then create the game environment page.
+
+        [!CAUTION]
+        **New Tasks**
+        Highlighting a user should bring up their data - high score, runs, etc.
+        Option to delete users. This'll require a new DTO in the backend. Have to consider cascading (All or orphan the data?)
 
 What did you struggle with?
 
