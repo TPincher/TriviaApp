@@ -13,10 +13,13 @@ export const getAllUsers = async () => {
   return allUsers;
 };
 
-export const addUser = async (userData: User) => {
+export const addUser = async (userData: String) => {
+  const dataToSend = {
+    name: userData,
+  };
   const response = await fetch("http://localhost:8080/users", {
     method: "POST",
-    body: JSON.stringify(userData),
+    body: JSON.stringify(dataToSend),
     headers: {
       "Content-Type": "application/json",
     },

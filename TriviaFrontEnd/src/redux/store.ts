@@ -1,6 +1,10 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import triviaReducer from "./reducers";
 
-const store = createStore(triviaReducer);
+const store = configureStore({
+  reducer: {
+    trivia: triviaReducer,
+  },
+});
 
 export default store;

@@ -3,8 +3,14 @@ import styles from "./MenuPage.module.scss";
 import pageStyles from "./AllPages.module.scss";
 import { useEffect, useState } from "react";
 import { fetchCategories, fetchQuestion } from "../services/triviaAPI";
+import { updateDifficulty } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const MenuPage = () => {
+  const dispatch = useDispatch();
+  const triviaState = useSelector((state) => state.trivia);
+  const storeDifficulty = triviaState.difficulty;
+  const storeCategory = triviaState.category;
   const difficulties: string[] = ["easy", "medium", "hard", "all"];
   const [selectedDifficulty, setSelectedDifficulty] = useState("none selected");
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -19,17 +25,26 @@ const MenuPage = () => {
     console.log(selectedCategory);
   }, [selectedDifficulty, selectedCategory]);
 
-  console.log(categoryList);
-
   const questionFetcher = () => {
     console.log(fetchQuestion("&category=19"));
+  };
+
+  const handleDifficultySelect = (difficulty: String) => {
+    dispatch(updateDifficulty(difficulty));
+    console.log(storeDifficulty);
   };
 
   return (
     <main className={pageStyles.allPages}>
       <section className={styles.difficultySection}>
         {difficulties.map((difficulty) => {
-          return <Card text={difficulty} action={setSelectedDifficulty} />;
+          return (
+            <Card
+              text={difficulty}
+              action={setSelectedDifficulty}
+              onClick={() => handleDifficultySelect(difficulty)}
+            />
+          );
         })}
         <p>Game difficulty: {selectedDifficulty}</p>
       </section>
