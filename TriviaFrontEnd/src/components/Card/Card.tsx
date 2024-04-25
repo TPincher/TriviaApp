@@ -2,14 +2,13 @@ import styles from "./Card.module.scss";
 
 interface Props {
   text: string;
-  data?: unknown;
   categoryID?: string;
   action: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Card = (props: Props) => {
   const setAction = () => {
-    props.action(props.text);
+    props.action(props.text, props.categoryID);
   };
 
   return (

@@ -6,6 +6,11 @@ import {
   UPDATE_CATEGORY,
 } from "./actionTypes";
 
+export interface Category {
+  name: String;
+  id: Number;
+}
+
 export const setPlayer = (text: String) => ({
   type: SET_PLAYER,
   payload: { text },
@@ -26,7 +31,7 @@ export const updateDifficulty = (difficulty: String) => ({
   payload: { difficulty },
 });
 
-export const updateCategory = (category: String) => ({
+export const updateCategory = (category: Category) => ({
   type: UPDATE_CATEGORY,
   payload: { category },
 });

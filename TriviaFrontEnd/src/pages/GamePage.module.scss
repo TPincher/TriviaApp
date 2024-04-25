@@ -1,0 +1,28 @@
+.container {
+  height: 95vh;
+  width: 95vw;
+  border: 2px solid green;
+  display: flex;
+  flex-direction: column;
+}
+
+.topSection {
+  height: 15vh;
+  width: 95vw;
+  border: 2px solid black;
+}
+
+.middleSection {
+  height: 65vh;
+  width: 95vw;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.bottomSection {
+  height: 15vh;
+  width: 95vw;
+  border: 2px solid black;
+}
