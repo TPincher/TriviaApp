@@ -23,7 +23,6 @@ const LandingPage = () => {
   const usersButtonClick = async () => {
     setUsers(await getAllUsers());
     console.log(users);
-    console.log("working");
   };
 
   const handlePlayerSelect = (value: any) => {

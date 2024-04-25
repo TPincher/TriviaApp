@@ -2,7 +2,6 @@ import styles from "./Card.module.scss";
 
 interface Props {
   text: string;
-  data?: unknown;
   categoryID?: string;
   action: React.Dispatch<React.SetStateAction<any>>;
 }

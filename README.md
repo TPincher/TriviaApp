@@ -75,7 +75,7 @@ Change logs
 
         Connected the application with the back-end, can pull all user data successfully. This code will have to change when the project is hosted. I am also questioning how data should be batched and updated - I don't want to make too many unnecassary calls. (Is this where GraphQL would be useful?)
 
-    26/4/2024:
+    24/4/2024:
         Returning to this project after looking into PyTorch and associated Python libraries for job interview. Spent a few hours getting back into the project.
 
         Added in two new sections to the Redux store: updateCategory and updateDifficulty.

@@ -58,7 +58,7 @@ const triviaReducer = (state = initialState, action: any) => {
         score: state.score,
         questions: state.questions,
         difficulty: state.difficulty,
-        category: action.state.category,
+        category: action.payload.category,
       };
 
     default:
