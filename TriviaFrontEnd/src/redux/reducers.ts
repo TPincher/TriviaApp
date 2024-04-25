@@ -11,7 +11,10 @@ const initialState = {
   score: 0,
   questions: [],
   difficulty: "",
-  category: "",
+  category: {
+    name: "",
+    id: 0,
+  },
 };
 
 const triviaReducer = (state = initialState, action: any) => {
