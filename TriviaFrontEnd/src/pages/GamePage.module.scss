@@ -7,9 +7,15 @@
 }
 
 .topSection {
+  display: flex;
+  flex-direction: row;
   height: 15vh;
   width: 95vw;
   border: 2px solid black;
+}
+
+.topDiv {
+  width: 45vw;
 }
 
 .middleSection {

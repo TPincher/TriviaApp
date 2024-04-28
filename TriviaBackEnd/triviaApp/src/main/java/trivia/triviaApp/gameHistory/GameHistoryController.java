@@ -45,10 +45,10 @@ public class GameHistoryController {
 			return new ResponseEntity<>(foundGameHistory, HttpStatus.OK);
 	}
 	
-//	@PatchMapping("/{id}")
-//	public ResponseEntity<GameHistory> updateGameHistoryById(@Valid @RequestBody UpdateGameHistoryDTO data, @PathVariable Long id) throws NotFoundException, ServiceValidationException {
-//		Optional<GameHistory> maybeUpdatedGameHistory = this.gameHistoryService.updateById(data, id);
-//		GameHistory updatedGameHistory = maybeUpdatedGameHistory.orElseThrow(() -> new NotFoundException(GameHistory.class, id));
-//		return new ResponseEntity<>(updatedGameHistory, HttpStatus.OK);
-//	}
+	@PatchMapping("/{id}")
+	public ResponseEntity<GameHistory> updateGameHistoryById(@Valid @RequestBody UpdateGameHistoryDTO data, @PathVariable Long id) throws NotFoundException, ServiceValidationException {
+		Optional<GameHistory> maybeUpdatedGameHistory = this.gameHistoryService.updateById(data, id);
+		GameHistory updatedGameHistory = maybeUpdatedGameHistory.orElseThrow(() -> new NotFoundException(GameHistory.class, id));
+		return new ResponseEntity<>(updatedGameHistory, HttpStatus.OK);
+	}
 }
