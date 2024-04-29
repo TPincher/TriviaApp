@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import { addUser, getAllUsers } from "../services/userService";
+import mainStyles from "./AllPages.module.scss";
 import styles from "./LandingPage.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setPlayer } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import LinkButton from "../components/LinkButton/LinkButton";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -12,29 +13,30 @@ const LandingPage = () => {
   const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");
 
-  const createUserClick = () => {
-    addUser(input);
+  const createUserClick = async () => {
+    await addUser(input);
+    setUsers(await getAllUsers());
   };
 
   const handleInputChange = (e: any) => {
     setInput(e.target.value);
   };
 
-  const usersButtonClick = async () => {
-    setUsers(await getAllUsers());
-    console.log(users);
-  };
+  useEffect(() => {
+    const loadUsers = async () => {
+      setUsers(await getAllUsers());
+    };
+    loadUsers();
+  }, []);
 
-  const handlePlayerSelect = (value: any) => {
-    dispatch(setPlayer(value));
-    console.log(storeUsers);
+  const handlePlayerSelect = (name: string, id: number) => {
+    dispatch(setPlayer({ name, id }));
   };
 
   return (
-    <main>
-      <button onClick={usersButtonClick}>Click for users</button>
-      <div className={styles.container}>
-        <section className={styles.left}>
+    <main className={mainStyles.allPages}>
+      <section className={styles.container}>
+        <div>
           <h1>Create new user</h1>
           <input
             type={"text"}
@@ -42,22 +44,27 @@ const LandingPage = () => {
             onChange={handleInputChange}
           ></input>
           <button onClick={createUserClick}>Create</button>
-        </section>
-        <section className={styles.right}>
-          {users.map((user: any, id: number) => {
+        </div>
+
+        <div>
+          {users.map((user: any, key: number) => {
             return (
-              <p onClick={() => handlePlayerSelect(user.name)}>{user.name}</p>
+              <p
+                onClick={() => handlePlayerSelect(user.name, user.id)}
+                key={key}
+              >
+                {user.name}
+              </p>
             );
           })}
           <button>Delete user</button>
-        </section>
-      </div>
-      <p>{`Current user: ${storeUsers}`}</p>
-      {storeUsers && (
-        <button>
-          <Link to={"/menu"}>PLAY</Link>
-        </button>
-      )}
+          {storeUsers.name && <LinkButton link={"menu"} buttonText={"PLAY"} />}
+          {storeUsers.name && (
+            <LinkButton link={"gameHistory"} buttonText={"PLAYER HISTORY"} />
+          )}
+          <p>{`Current user: ${storeUsers.name} id: ${storeUsers.id}`}</p>
+        </div>
+      </section>
     </main>
   );
 };

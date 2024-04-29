@@ -1,20 +1,37 @@
+.title {
+  height: 5%;
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 100%;
+}
+
 .difficultySection {
+  border: 2px solid green;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 80vw;
-  height: 20vh;
+  width: 100%;
+  height: 25%;
 }
 
 .categorySection {
+  border: 2px solid blue;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 90vw;
-  height: 60vh;
+  width: 100%;
+  height: 65%;
   justify-content: space-around;
+  overflow-y: auto;
 }
 
 .buttonSection {
+  height: 10%;
   width: 100%;
 }

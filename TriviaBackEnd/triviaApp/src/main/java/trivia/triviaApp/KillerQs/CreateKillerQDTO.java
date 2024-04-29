@@ -10,7 +10,7 @@ public class CreateKillerQDTO {
 	
 	private Boolean corrected;
 	
-	@Min(value = 1, message = "User ID must be greater than or equal to 1")
+	@Min(value = 0, message = "User ID must be greater than or equal to 0")
 	private long userId;
 	
 	private long QuestionBlockId;

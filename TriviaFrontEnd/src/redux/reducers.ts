@@ -7,7 +7,10 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-  player: "",
+  player: {
+    name: "",
+    id: -1,
+  },
   score: 0,
   questions: [],
   difficulty: "",
@@ -21,7 +24,7 @@ const triviaReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_PLAYER:
       return {
-        player: action.payload.text,
+        player: action.payload.player,
         score: state.score,
         questions: state.questions,
         difficulty: state.difficulty,

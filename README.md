@@ -108,6 +108,21 @@ Next
 - Create score tracking
 - Submission of data to DB on game end.
 
+27/04/2024
+
+- Killer questions are now automatically submitted to the database. These exist on a joining table that references back to both the player and the question block
+- Minor stying updates
+
+28/04/2024
+
+- Killer questions can now be re-attempted on the game details page. This will update a column in the database, but not make any difference to the user. This could be used later on but has no immediate utility.
+- Game is now practically feature complete, with the exception of player deletion. There's an issue with table cascading that needs to be sorted for the user to have this utility.
+
+29/04/2024
+
+- Created button component to replace and standardize buttons throughout the application
+- Split player history off to it's own page
+
 What did you struggle with?
 
     What? Why? How?

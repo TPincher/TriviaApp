@@ -1,0 +1,12 @@
+.gameDetailsCard {
+  border: 2px solid black;
+
+  &Correct {
+    background-color: green;
+  }
+
+  &Incorrect {
+    background-color: red;
+    color: white;
+  }
+}

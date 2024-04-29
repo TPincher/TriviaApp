@@ -56,26 +56,30 @@ public class GameHistoryService {
 		return this.repo.findById(id);
 	}
 
-//	public Optional<GameHistory> updateById(@Valid UpdateGameHistoryDTO data, Long id) {
-//		Optional<GameHistory> maybeGameHistory = this.findById(id);
-//			if(maybeGameHistory.isEmpty()) {
-//				return maybeGameHistory;
-//			}
-//			
-//			GameHistory foundGameHistory = maybeGameHistory.get();
-//			ValidationErrors errors = new ValidationErrors();
-//			Long userId = data.getUserId();
-//			
-//			Optional<User> maybeUser = this.userService.findById(userId);
-//			if(maybeUser.isEmpty() ) {
-//				errors.addError("user", String.format("User with id %s does not exist", userId));
-//			} else {
-//				foundGameHistory.setUserId(maybeUser.get());
-//			}
-//			
-//			GameHistory updatedGameHistory = this.repo.save(foundGameHistory);
-//			return Optional.of(updatedGameHistory);
-//	}
+	public Optional<GameHistory> updateById(@Valid UpdateGameHistoryDTO data, Long id) {
+		Optional<GameHistory> maybeGameHistory = this.findById(id);
+			if(maybeGameHistory.isEmpty()) {
+				return maybeGameHistory;
+			}
+			
+			GameHistory foundGameHistory = maybeGameHistory.get();
+			ValidationErrors errors = new ValidationErrors();
+			Long userId = data.getUserId();
+			
+			if (data.getScore() > -1) {
+				foundGameHistory.setScore(data.getScore());
+			}
+			
+			Optional<User> maybeUser = this.userService.findById(userId);
+			if(maybeUser.isEmpty() ) {
+				errors.addError("user", String.format("User with id %s does not exist", userId));
+			} else {
+				foundGameHistory.setUserId(maybeUser.get());
+			}
+			
+			GameHistory updatedGameHistory = this.repo.save(foundGameHistory);
+			return Optional.of(updatedGameHistory);
+	}
 	
 	
 }

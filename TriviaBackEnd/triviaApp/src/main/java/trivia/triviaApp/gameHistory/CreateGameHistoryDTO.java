@@ -14,7 +14,7 @@ public class CreateGameHistoryDTO {
 	private long userId;
 	
 	@NotBlank
-	@Pattern(regexp = "^(easy|medium|hard|mixed)$")
+	@Pattern(regexp = "^(easy|medium|hard|all)$")
 	private String difficulty;
 	
 	private Date gameDate;
