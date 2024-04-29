@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./GameOverPage.module.scss";
-import { Link } from "react-router-dom";
+import LinkButton from "../components/LinkButton/LinkButton";
 
 const GameOverPage = () => {
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ const GameOverPage = () => {
   return (
     <main>
       <section className={styles.gameOver}>
-        <p>{storePlayer}</p>
+        <p>{storePlayer.name}</p>
         <p>{storeDifficulty}</p>
         <p>{storeCategory.name}</p>
         <p>{storeScore}</p>
-        <Link to={"/menu"}>Play Again?</Link>
+        <LinkButton link={"menu"} buttonText={"PLAY AGAIN?"} />
       </section>
     </main>
   );

@@ -11,9 +11,14 @@ export interface Category {
   id: Number;
 }
 
-export const setPlayer = (text: String) => ({
+export interface Player {
+  name: String;
+  id: Number;
+}
+
+export const setPlayer = (player: Player) => ({
   type: SET_PLAYER,
-  payload: { text },
+  payload: { player },
 });
 
 export const changeScore = (score: Number) => ({
@@ -21,7 +26,7 @@ export const changeScore = (score: Number) => ({
   payload: { score },
 });
 
-export const updateQuestions = (question) => ({
+export const updateQuestions = (question: any) => ({
   type: UPDATE_QUESTIONS,
   payload: { question },
 });

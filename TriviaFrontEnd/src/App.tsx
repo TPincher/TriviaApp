@@ -6,6 +6,8 @@ import MenuPage from "./pages/MenuPage";
 import LandingPage from "./pages/LandingPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import GameDetailsPage from "./pages/GameDetailsPage";
+import GameHistoryPage from "./pages/GameHistoryPage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/menu" element={<MenuPage />} />
             <Route path="/game" element={<GamePage />} />
+            <Route path="/gameHistory" element={<GameHistoryPage />} />
+            <Route path="/gameDetails/:id" element={<GameDetailsPage />} />
             <Route path="/gameover" element={<GameOverPage />} />
           </Routes>
         </BrowserRouter>

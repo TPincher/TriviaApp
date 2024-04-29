@@ -17,6 +17,13 @@ export interface questionBlock {
   correctAnswer: string;
 }
 
+export interface killerQ {
+  category: string;
+  corrected: boolean;
+  user: number;
+  questionBlock: number;
+}
+
 export const getAllUsers = async () => {
   const response = await fetch("http://localhost:8080/users");
   if (!response.ok) {
@@ -25,6 +32,16 @@ export const getAllUsers = async () => {
   const allUsers = await response.json();
   console.log(allUsers);
   return allUsers;
+};
+
+export const getUser = async (userId: number) => {
+  const response = await fetch(`http://localhost:8080/users/${userId}`);
+  if (!response.ok) {
+    throw new Error("failed to load user");
+  }
+  const userData = await response.json();
+  console.log(userData);
+  return userData;
 };
 
 export const addUser = async (userData: String) => {
@@ -42,6 +59,18 @@ export const addUser = async (userData: String) => {
     throw new Error("Failed to add user");
   }
   return response.json();
+};
+
+export const getGameHistory = async (gameHistoryId: number) => {
+  const response = await fetch(
+    `http://localhost:8080/gameHistory/${gameHistoryId}`
+  );
+  if (!response.ok) {
+    throw new Error("failed to load gameHistory");
+  }
+  const details = await response.json();
+  console.log(details);
+  return details;
 };
 
 export const submitGameHistory = async (gameHistory: gameHistory) => {
@@ -103,6 +132,43 @@ export const submitScoreToGameHistory = async (
   );
   if (!response.ok) {
     throw new Error("Failed to update game results - score");
+  }
+  return response.json();
+};
+
+export const submitkillerQ = async (killerQ: killerQ) => {
+  const dataToSend = {
+    category: killerQ.category || "none selected",
+    corrected: killerQ.corrected,
+    userId: killerQ.user,
+    questionBlockId: killerQ.questionBlock,
+  };
+  const response = await fetch(`http://localhost:8080/killerQs`, {
+    method: "POST",
+    body: JSON.stringify(dataToSend),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update game results - killerQ");
+  }
+  return response.json();
+};
+
+export const updateKillerQ = async (id: number) => {
+  const dataToSend = {
+    corrected: true,
+  };
+  const response = await fetch(`http://localhost:8080/killerQs/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(dataToSend),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update game results - killerQCorrection");
   }
   return response.json();
 };

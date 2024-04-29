@@ -1,0 +1,17 @@
+.GDPContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.GameDetailsPage {
+  border: 2px solid black;
+  height: 80vh;
+  width: 60vw;
+  overflow-y: auto;
+}
+
+.retrySection {
+  border: 2px solid blue;
+  height: 80vh;
+  width: 30vw;
+}

@@ -2,11 +2,12 @@ import Card from "../components/Card/Card";
 import styles from "./MenuPage.module.scss";
 import pageStyles from "./AllPages.module.scss";
 import { useEffect, useState } from "react";
-import { fetchCategories, fetchQuestion } from "../services/triviaAPI";
-import { Category, updateCategory, updateDifficulty } from "../redux/actions";
+import { fetchCategories } from "../services/triviaAPI";
+import { updateCategory, updateDifficulty } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { submitGameHistory } from "../services/userService";
+import { getUser } from "../services/userService";
+import LinkButton from "../components/LinkButton/LinkButton";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
@@ -14,20 +15,15 @@ const MenuPage = () => {
   const player = triviaState.player;
   const storeDifficulty = triviaState.difficulty;
   const storeCategory = triviaState.category;
+  const storeUser = triviaState.player.id;
   const difficulties: string[] = ["easy", "medium", "hard", "all"];
   const [categoryList, setCategoryList] = useState([]);
+  const [activeUser, setActiveUser] = useState({});
 
   useEffect(() => {
     fetchCategories().then((data: any) => setCategoryList(data));
+    getUser(storeUser).then((data: any) => setActiveUser(data));
   }, []);
-
-  const createGame = () => {
-    submitGameHistory({
-      userId: 8,
-      difficulty: storeDifficulty,
-      score: storeScore,
-    }).then((returnID: any) => console.log(returnID.id));
-  };
 
   const handleDifficultySelect = (difficulty: String) => {
     dispatch(updateDifficulty(difficulty));
@@ -41,37 +37,42 @@ const MenuPage = () => {
 
   return (
     <main className={pageStyles.allPages}>
-      <section>
-        <p>{player}</p>
-      </section>
-      <section className={styles.difficultySection}>
-        {difficulties.map((difficulty) => {
-          return <Card text={difficulty} action={handleDifficultySelect} />;
-        })}
-        <p>Game difficulty: {storeDifficulty}</p>
-      </section>
+      <h1 className={styles.title}>Current Player: {player.name}</h1>
+      <section className={styles.selectors}>
+        <div className={styles.difficultySection}>
+          {difficulties.map((difficulty: any, key: number) => {
+            return (
+              <Card
+                key={key}
+                text={difficulty}
+                action={handleDifficultySelect}
+              />
+            );
+          })}
+          <p>Game difficulty: {storeDifficulty}</p>
+        </div>
 
-      <section className={styles.categorySection}>
-        {categoryList.map((category) => {
-          return (
-            <Card
-              text={category.category}
-              categoryID={category.fetchID}
-              action={handleCategorySelect}
-            />
-          );
-        })}
+        <div className={styles.categorySection}>
+          {categoryList.map((category: any, key: number) => {
+            return (
+              <Card
+                key={key}
+                text={category.category}
+                categoryID={category.fetchID}
+                action={handleCategorySelect}
+              />
+            );
+          })}
+        </div>
       </section>
 
       <p>Question category: {storeCategory.name}</p>
 
       <section className={styles.buttonSection}>
-        <button>
-          <Link to={"/game"}>PLAY</Link>
-        </button>
-        <button>
-          <Link to={"/"}>BACK</Link>
-        </button>
+        {storeDifficulty != "" && (
+          <LinkButton link={"game"} buttonText={"PLAY"} />
+        )}
+        <LinkButton link={""} buttonText={"BACK"} />
       </section>
     </main>
   );

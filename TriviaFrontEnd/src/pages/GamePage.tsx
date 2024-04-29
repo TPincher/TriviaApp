@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./GamePage.module.scss";
 import { fetchQuestion } from "../services/triviaAPI";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   submitGameHistory,
   submitQuestionBlock,
   submitScoreToGameHistory,
+  submitkillerQ,
 } from "../services/userService";
 import { changeScore } from "../redux/actions";
+import LinkButton from "../components/LinkButton/LinkButton";
 
 const GamePage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const GamePage = () => {
   const [gameScore, setGameScore] = useState(0);
   const [gameHistoryID, setGameHistoryID] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [questionB, setQuestionB] = useState(-1);
   let answers: string[] = [];
 
   const startRound = async () => {
@@ -35,7 +37,7 @@ const GamePage = () => {
 
   const initialize = () => {
     submitGameHistory({
-      userId: 14,
+      userId: storeUsers.id,
       difficulty: storeDifficulty,
       score: 0,
     })
@@ -78,14 +80,26 @@ const GamePage = () => {
       dispatch(changeScore(gameScore));
       setRoundActive(!roundActive);
       setGameOver(true);
-      await submitQuestionBlock({
-        gameHistory: gameHistoryID,
-        questionText: roundQuestion.question,
-        answers: answers.join(" --- "),
-        submittedAnswer: selectedAnswer,
-        correctAnswer: roundQuestion.answer,
+
+      // Wait for both functions to complete before proceeding
+      await Promise.all([
+        submitQuestionBlock({
+          gameHistory: gameHistoryID,
+          questionText: roundQuestion.question,
+          answers: answers.join(" --- "),
+          submittedAnswer: selectedAnswer,
+          correctAnswer: roundQuestion.answer,
+        }),
+        submitScoreToGameHistory(gameHistoryID, gameScore),
+      ]).then(([questionBlockData]) => {
+        setQuestionB(questionBlockData.id);
+        return submitkillerQ({
+          category: storeCategory.name,
+          corrected: false,
+          user: storeUsers.id,
+          questionBlock: questionBlockData.id,
+        });
       });
-      await submitScoreToGameHistory(gameHistoryID, gameScore);
     }
   };
 
@@ -115,10 +129,10 @@ const GamePage = () => {
         )}
         {roundActive &&
           roundQuestion.allAnswers != undefined &&
-          roundQuestion.allAnswers.map((answer) => {
+          roundQuestion.allAnswers.map((answer: any, key: number) => {
             answers.push(answer);
             return (
-              <button onClick={() => handleSelectAnswer(answer)}>
+              <button key={key} onClick={() => handleSelectAnswer(answer)}>
                 {answer}
               </button>
             );
@@ -131,15 +145,8 @@ const GamePage = () => {
         {!gameOver && roundActive && (
           <button onClick={answerCheck}>Submit</button>
         )}
-        {gameScore > 0 && !gameOver && !roundActive && (
-          <button>
-            <Link to={"/gameover"}>Take bonus and end game</Link>
-          </button>
-        )}
         {gameOver && (
-          <button>
-            <Link to={"/gameover"}>Go to score screen</Link>
-          </button>
+          <LinkButton link={"gameover"} buttonText={"GO TO SCORE SCREEN"} />
         )}
       </section>
     </main>
