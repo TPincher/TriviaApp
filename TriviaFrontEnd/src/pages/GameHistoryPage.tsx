@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./GameHistoryPage.module.scss";
+import pageStyles from "./AllPages.module.scss";
 import { getUser } from "../services/userService";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import LinkButton from "../components/LinkButton/LinkButton";
 
 const GameHistoryPage = () => {
@@ -15,7 +15,7 @@ const GameHistoryPage = () => {
   }, []);
 
   return (
-    <div>
+    <main className={pageStyles.allPages}>
       <LinkButton link={""} buttonText={"BACK"} />
       <section className={styles.statsSection}>
         <h3>Game History</h3>
@@ -38,7 +38,7 @@ const GameHistoryPage = () => {
             })}
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

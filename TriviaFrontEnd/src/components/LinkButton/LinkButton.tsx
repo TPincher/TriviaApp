@@ -9,7 +9,9 @@ interface Props {
 const LinkButton = (props: Props) => {
   return (
     <div className={styles.button}>
-      <Link to={`/${props.link}`}>{props.buttonText}</Link>
+      <Link className={styles.link} to={`/${props.link}`}>
+        {props.buttonText}
+      </Link>
     </div>
   );
 };

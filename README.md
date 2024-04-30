@@ -123,6 +123,21 @@ Next
 - Created button component to replace and standardize buttons throughout the application
 - Split player history off to it's own page
 
+30/04/2024
+
+- Added header to all pages
+- Styled background for app
+- Added Header and Title components
+- Refactored code on Landing page, removed excess code
+- Aded function to textTile so that optional 'active' prop can be handed in to highlight currently selected option.
+- Added custom font for titles.
+- Styled menu page
+
+[!CAUTION]
+New Tasks
+
+- Page zoom is not properly responsive. Needs to be looked into and will likely require revamp of styling.
+
 What did you struggle with?
 
     What? Why? How?
