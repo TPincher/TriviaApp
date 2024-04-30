@@ -1,9 +1,17 @@
 .button {
+  font-size: x-large;
+  display: flex;
   text-decoration: none;
+  background-color: bisque;
+  box-shadow: 10px 10px red;
+  border-radius: 35px;
+  margin: 10px;
+  height: 40px;
+  min-width: 100px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.link {
   text-align: center;
-  height: 30px;
-  width: 200px;
-  border-radius: 10px;
-  background-color: lightgrey;
-  box-shadow: 8px 10px 10px #032b44;
 }

@@ -7,6 +7,7 @@ import { updateCategory, updateDifficulty } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../services/userService";
 import LinkButton from "../components/LinkButton/LinkButton";
+import Banner from "../components/Banner/Banner";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const MenuPage = () => {
   const storeUser = triviaState.player.id;
   const difficulties: string[] = ["easy", "medium", "hard", "all"];
   const [categoryList, setCategoryList] = useState([]);
-  const [activeUser, setActiveUser] = useState({});
+  const [_activeUser, setActiveUser] = useState({});
 
   useEffect(() => {
     fetchCategories().then((data: any) => setCategoryList(data));
@@ -36,36 +37,43 @@ const MenuPage = () => {
 
   return (
     <main className={pageStyles.allPages}>
-      <h1 className={styles.title}>Current Player: {player.name}</h1>
+      <Banner text={player.name} />
       <section className={styles.selectors}>
         <div className={styles.difficultySection}>
           {difficulties.map((difficulty: any, key: number) => {
+            let active = false;
+            if (storeDifficulty == difficulty) {
+              active = true;
+            }
             return (
               <Card
                 key={key}
                 text={difficulty}
+                activeTile={active}
                 action={handleDifficultySelect}
               />
             );
           })}
-          <p>Game difficulty: {storeDifficulty}</p>
         </div>
 
         <div className={styles.categorySection}>
           {categoryList.map((category: any, key: number) => {
+            let active = false;
+            if (storeCategory.name == category.category) {
+              active = true;
+            }
             return (
               <Card
                 key={key}
                 text={category.category}
                 categoryID={category.fetchID}
+                activeTile={active}
                 action={handleCategorySelect}
               />
             );
           })}
         </div>
       </section>
-
-      <p>Question category: {storeCategory.name}</p>
 
       <section className={styles.buttonSection}>
         {storeDifficulty != "" && (

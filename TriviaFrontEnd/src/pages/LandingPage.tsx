@@ -6,7 +6,7 @@ import { setPlayer } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import LinkButton from "../components/LinkButton/LinkButton";
 import TextTile from "../components/TextTile/TextTile";
-import Title from "../components/Title/Title";
+import Banner from "../components/Banner/Banner";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -39,14 +39,14 @@ const LandingPage = () => {
     <main className={pageStyles.allPages}>
       <section className={styles.container}>
         <div className={styles.LPTitle}>
-          <Title text={"Create New Player"} />
+          <Banner text={"Create New Player"} />
           <input
             type={"text"}
             value={input}
             onChange={handleInputChange}
           ></input>
           <button onClick={createUserClick}>Register</button>
-          <Title text={"Current Players"} />
+          <Banner text={"Current Players"} />
         </div>
 
         <div className={styles.LPUsers}>
@@ -64,7 +64,9 @@ const LandingPage = () => {
         </div>
         <div className={styles.LPButtons}>
           {/* <button>Delete user</button> */}
-          {storeUsers.name && <LinkButton link={"menu"} buttonText={"PLAY"} />}
+          {storeUsers.name && (
+            <LinkButton link={"menu"} buttonText={"NEW GAME"} />
+          )}
           {storeUsers.name && (
             <LinkButton link={"gameHistory"} buttonText={"PLAYER HISTORY"} />
           )}

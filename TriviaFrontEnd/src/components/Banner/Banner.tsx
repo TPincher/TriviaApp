@@ -1,4 +1,4 @@
-import styles from "./Title.module.scss";
+import styles from "./Banner.module.scss";
 
 interface Props {
   text: string;
