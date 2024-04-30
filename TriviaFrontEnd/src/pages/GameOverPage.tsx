@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./GameOverPage.module.scss";
+import pageStyles from "./AllPages.module.scss";
 import LinkButton from "../components/LinkButton/LinkButton";
 
 const GameOverPage = () => {
@@ -11,7 +12,7 @@ const GameOverPage = () => {
   const storeScore = triviaState.score;
 
   return (
-    <main>
+    <main className={pageStyles.allPages}>
       <section className={styles.gameOver}>
         <p>{storePlayer.name}</p>
         <p>{storeDifficulty}</p>

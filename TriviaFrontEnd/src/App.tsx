@@ -8,12 +8,14 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import GameDetailsPage from "./pages/GameDetailsPage";
 import GameHistoryPage from "./pages/GameHistoryPage";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/menu" element={<MenuPage />} />

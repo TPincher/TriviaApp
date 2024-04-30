@@ -1,0 +1,22 @@
+.container {
+  border: 8px double red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  height: 10vh;
+  width: 30vw;
+  border-radius: 35px;
+  margin-bottom: 5vh;
+}
+
+.header {
+  text-align: center;
+  height: 6vh;
+  width: 30vw;
+  font-family: "headlineFont";
+  font-size: 60px;
+  background-color: red;
+  color: yellow;
+  line-height: 5.75vh;
+}

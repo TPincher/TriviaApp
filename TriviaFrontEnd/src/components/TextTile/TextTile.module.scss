@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  background-color: bisque;
+  box-shadow: 10px 10px red;
+  border-radius: 35px;
+  margin: 10px;
+  height: 40px;
+  min-width: 100px;
+  line-height: 0vh;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+}
+
+.active {
+  background-color: darkgoldenrod;
+}

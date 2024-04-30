@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { fetchCategories } from "../services/triviaAPI";
 import { updateCategory, updateDifficulty } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getUser } from "../services/userService";
 import LinkButton from "../components/LinkButton/LinkButton";
 

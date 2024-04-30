@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./GamePage.module.scss";
+import pageStyles from "./AllPages.module.scss";
 import { fetchQuestion } from "../services/triviaAPI";
 import { useEffect, useState } from "react";
 import {
@@ -24,7 +25,7 @@ const GamePage = () => {
   const [gameScore, setGameScore] = useState(0);
   const [gameHistoryID, setGameHistoryID] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [questionB, setQuestionB] = useState(-1);
+  const [_questionB, setQuestionB] = useState(-1);
   let answers: string[] = [];
 
   const startRound = async () => {
@@ -110,7 +111,7 @@ const GamePage = () => {
   useEffect(() => {}, [result]);
 
   return (
-    <main className={styles.container}>
+    <main className={pageStyles.allPages}>
       <section className={styles.topSection}>
         <div className={styles.topDiv}>
           {roundActive && roundQuestion && <p>{roundQuestion.question}</p>}

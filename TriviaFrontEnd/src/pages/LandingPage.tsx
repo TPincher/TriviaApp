@@ -1,10 +1,12 @@
 import { addUser, getAllUsers } from "../services/userService";
-import mainStyles from "./AllPages.module.scss";
+import pageStyles from "./AllPages.module.scss";
 import styles from "./LandingPage.module.scss";
 import { useEffect, useState } from "react";
 import { setPlayer } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import LinkButton from "../components/LinkButton/LinkButton";
+import TextTile from "../components/TextTile/TextTile";
+import Title from "../components/Title/Title";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -34,35 +36,38 @@ const LandingPage = () => {
   };
 
   return (
-    <main className={mainStyles.allPages}>
+    <main className={pageStyles.allPages}>
       <section className={styles.container}>
-        <div>
-          <h1>Create new user</h1>
+        <div className={styles.LPTitle}>
+          <Title text={"Create New Player"} />
           <input
             type={"text"}
             value={input}
             onChange={handleInputChange}
           ></input>
-          <button onClick={createUserClick}>Create</button>
+          <button onClick={createUserClick}>Register</button>
+          <Title text={"Current Players"} />
         </div>
 
-        <div>
-          {users.map((user: any, key: number) => {
+        <div className={styles.LPUsers}>
+          {users.map((user: any, _key: number) => {
+            let active = false;
+            if (storeUsers.name == user.name) {
+              active = true;
+            }
             return (
-              <p
-                onClick={() => handlePlayerSelect(user.name, user.id)}
-                key={key}
-              >
-                {user.name}
-              </p>
+              <div onClick={() => handlePlayerSelect(user.name, user.id)}>
+                <TextTile text={user.name} activeTile={active} />
+              </div>
             );
           })}
-          <button>Delete user</button>
+        </div>
+        <div className={styles.LPButtons}>
+          {/* <button>Delete user</button> */}
           {storeUsers.name && <LinkButton link={"menu"} buttonText={"PLAY"} />}
           {storeUsers.name && (
             <LinkButton link={"gameHistory"} buttonText={"PLAYER HISTORY"} />
           )}
-          <p>{`Current user: ${storeUsers.name} id: ${storeUsers.id}`}</p>
         </div>
       </section>
     </main>

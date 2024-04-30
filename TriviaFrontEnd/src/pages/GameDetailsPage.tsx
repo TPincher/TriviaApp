@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import pageStyles from "./AllPages.module.scss";
 import styles from "./GameDetailsPage.module.scss";
 import { getGameHistory } from "../services/userService";
 import { useEffect, useState } from "react";
@@ -33,7 +34,7 @@ const GameDetailsPage = () => {
   };
 
   return (
-    <main>
+    <main className={pageStyles.allPages}>
       GameDetailsPage {id}
       <LinkButton link={"gameHistory"} buttonText={"BACK"} />
       <div className={styles.GDPContainer}>

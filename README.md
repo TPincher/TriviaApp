@@ -123,6 +123,14 @@ Next
 - Created button component to replace and standardize buttons throughout the application
 - Split player history off to it's own page
 
+30/04/2024
+
+- Added header to all pages
+- Styled background for app
+- Added Header and Title components
+- Refactored code on Landing page, removed excess code
+- Aded function to textTile so that optional 'active' prop can be handed in to highlight currently selected option.
+
 What did you struggle with?
 
     What? Why? How?
