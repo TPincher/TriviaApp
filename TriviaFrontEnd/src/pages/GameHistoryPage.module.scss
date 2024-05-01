@@ -1,6 +1,33 @@
 .statsSection {
-  border: 2px solid black;
-  height: 80vh;
-  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
   overflow-y: auto;
+}
+
+.GHBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  background-color: beige;
+  margin: 2%;
+  border-radius: 35px;
+  box-shadow: 10px 10px red;
+
+  &__stats {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.GHButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 10%;
+  width: 100%;
+  margin-bottom: 5px;
 }

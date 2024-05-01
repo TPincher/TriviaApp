@@ -11,6 +11,8 @@ import {
 } from "../services/userService";
 import { changeScore } from "../redux/actions";
 import LinkButton from "../components/LinkButton/LinkButton";
+import Banner from "../components/Banner/Banner";
+import Card from "../components/Card/Card";
 
 const GamePage = () => {
   const dispatch = useDispatch();
@@ -62,7 +64,7 @@ const GamePage = () => {
   const answerCheck = async () => {
     if (selectedAnswer == roundQuestion.answer) {
       console.log(gameHistoryID);
-      setResult("you got it right");
+      setResult("CORRECT!");
       setSelectedAnswer("");
       setRoundActive(!roundActive);
       setGameScore(gameScore + 1);
@@ -76,7 +78,7 @@ const GamePage = () => {
       console.log(answers);
       startRound;
     } else {
-      setResult("you got it wrong");
+      setResult("THAT'S INCORRECT!");
       setSelectedAnswer("");
       dispatch(changeScore(gameScore));
       setRoundActive(!roundActive);
@@ -113,41 +115,49 @@ const GamePage = () => {
   return (
     <main className={pageStyles.allPages}>
       <section className={styles.topSection}>
-        <div className={styles.topDiv}>
-          {roundActive && roundQuestion && <p>{roundQuestion.question}</p>}
-        </div>
-        <div className={styles.topDiv}>
-          <p>Score: {gameScore}</p>
-        </div>
+        <Banner text={`Score: ${gameScore}`} />
+        {roundActive && roundQuestion && <p>{roundQuestion.question}</p>}
       </section>
 
       <section className={styles.middleSection}>
         {!gameOver && !roundActive && gameScore == 0 && (
-          <button onClick={initialize}>First question!</button>
+          <button className={styles.answerCard} onClick={initialize}>
+            First question!
+          </button>
         )}
         {!gameOver && !roundActive && gameScore > 0 && (
-          <button onClick={startRound}>Next question!</button>
+          <button className={styles.answerCard} onClick={startRound}>
+            Next question!
+          </button>
         )}
         {roundActive &&
           roundQuestion.allAnswers != undefined &&
           roundQuestion.allAnswers.map((answer: any, key: number) => {
             answers.push(answer);
+            let active = false;
+            if (selectedAnswer == answer) {
+              active = true;
+            }
             return (
-              <button key={key} onClick={() => handleSelectAnswer(answer)}>
-                {answer}
-              </button>
+              <Card
+                key={key}
+                text={answer}
+                activeTile={active}
+                action={() => handleSelectAnswer(answer)}
+              />
             );
           })}
+        {gameOver && (
+          <LinkButton link={"gameover"} buttonText={"GO TO SCORE SCREEN"} />
+        )}
       </section>
 
       <section className={styles.bottomSection}>
-        <p>Your Answer: {selectedAnswer}</p>
         <p>{result}</p>
-        {!gameOver && roundActive && (
-          <button onClick={answerCheck}>Submit</button>
-        )}
-        {gameOver && (
-          <LinkButton link={"gameover"} buttonText={"GO TO SCORE SCREEN"} />
+        {!gameOver && roundActive && selectedAnswer && (
+          <button className={styles.submitButton} onClick={answerCheck}>
+            Final Answer?
+          </button>
         )}
       </section>
     </main>

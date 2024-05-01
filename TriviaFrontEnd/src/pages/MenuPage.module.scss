@@ -31,10 +31,10 @@
   overflow-y: auto;
 }
 
-.buttonSection {
+.MPButtons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   height: 10%;
   width: 100%;
 }

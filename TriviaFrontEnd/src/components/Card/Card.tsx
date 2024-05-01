@@ -4,7 +4,7 @@ interface Props {
   text: string;
   categoryID?: string;
   activeTile?: boolean;
-  action: React.Dispatch<React.SetStateAction<any>>;
+  action?: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Card = (props: Props) => {
@@ -15,7 +15,7 @@ const Card = (props: Props) => {
   }
 
   const setAction = () => {
-    props.action(props.text, props.categoryID);
+    props.action != undefined && props.action(props.text, props.categoryID);
   };
 
   return (
