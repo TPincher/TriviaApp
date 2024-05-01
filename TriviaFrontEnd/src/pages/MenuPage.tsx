@@ -75,7 +75,7 @@ const MenuPage = () => {
         </div>
       </section>
 
-      <section className={styles.buttonSection}>
+      <section className={styles.MPButtons}>
         {storeDifficulty != "" && (
           <LinkButton link={"game"} buttonText={"PLAY"} />
         )}

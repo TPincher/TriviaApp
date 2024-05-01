@@ -1,6 +1,6 @@
 .container {
-  height: 95vh;
-  width: 95vw;
+  height: 100%;
+  width: 100%;
   border: 2px solid green;
   display: flex;
   flex-direction: column;
@@ -8,27 +8,57 @@
 
 .topSection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 15vh;
-  width: 95vw;
-  border: 2px solid black;
-}
-
-.topDiv {
-  width: 45vw;
+  width: 100%;
 }
 
 .middleSection {
-  height: 65vh;
-  width: 95vw;
-  border: 2px solid black;
+  height: 60%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
+.answerCard {
+  height: 40%;
+  width: 40%;
+  font-family: "headlineFont";
+  font-size: 60px;
+  background-color: red;
+  color: yellow;
+  line-height: 5.75vh;
+  border: none;
+  border-radius: 35px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .bottomSection {
-  height: 15vh;
-  width: 95vw;
-  border: 2px solid black;
+  text-align: center;
+  height: 6vh;
+  width: 100%;
+  font-family: "headlineFont";
+  font-size: 60px;
+  background-color: red;
+  color: yellow;
+  line-height: 5.75vh;
+}
+
+.submitButton {
+  font-family: "headlineFont";
+  font-size: 60px;
+  background-color: red;
+  color: yellow;
+  line-height: 5.75vh;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
