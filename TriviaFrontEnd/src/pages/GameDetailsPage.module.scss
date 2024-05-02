@@ -5,13 +5,20 @@
 
 .GameDetailsPage {
   border: 2px solid black;
-  height: 80vh;
+  height: 50vh;
   width: 60vw;
   overflow-y: auto;
 }
 
 .retrySection {
   border: 2px solid blue;
-  height: 80vh;
+  height: 50vh;
   width: 30vw;
+}
+
+.GDButtons {
+  display: flex;
+  justify-content: space-around;
+  height: 10%;
+  width: 100%;
 }

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import GameDetailsCard from "../components/GameDetailsCard/GameDetailsCard";
 import AnswerTile from "../components/AnswerTile/AnswerTile";
 import LinkButton from "../components/LinkButton/LinkButton";
+import Banner from "../components/Banner/Banner";
 
 const GameDetailsPage = () => {
   const pathVariables = useParams();
@@ -35,8 +36,7 @@ const GameDetailsPage = () => {
 
   return (
     <main className={pageStyles.allPages}>
-      GameDetailsPage {id}
-      <LinkButton link={"gameHistory"} buttonText={"BACK"} />
+      <Banner text={`Game ${id}`} />
       <div className={styles.GDPContainer}>
         <section className={styles.GameDetailsPage}>
           {loading && <p>...Loading...</p>}
@@ -45,7 +45,6 @@ const GameDetailsPage = () => {
               return (
                 <GameDetailsCard
                   question={questionBlock.questionText}
-                  pAnswers={questionBlock.answers}
                   answer={questionBlock.correctAnswer}
                   sAnswer={questionBlock.submittedAnswer}
                   killerQ={questionBlock.killerQ}
@@ -68,6 +67,9 @@ const GameDetailsPage = () => {
             })}
         </section>
       </div>
+      <section className={styles.GDButtons}>
+        <LinkButton link={"gameHistory"} buttonText={"BACK"} />
+      </section>
     </main>
   );
 };
