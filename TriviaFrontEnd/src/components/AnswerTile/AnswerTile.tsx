@@ -12,7 +12,7 @@ const answerCheck = (props: Props) => {
     console.log("you got it right this time");
     updateKillerQ(props.killerQid);
   } else {
-    console.log("you're still a fuckup");
+    console.log("That's still wrong");
   }
 };
 
