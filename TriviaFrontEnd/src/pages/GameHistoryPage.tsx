@@ -6,14 +6,18 @@ import { useSelector } from "react-redux";
 import LinkButton from "../components/LinkButton/LinkButton";
 import Banner from "../components/Banner/Banner";
 import Card from "../components/Card/Card";
+import { Game, User } from "../types/Types";
 
 const GameHistoryPage = () => {
-  const triviaState = useSelector((state) => state.trivia);
+  const triviaState = useSelector((state: any) => state.trivia);
   const storeUser = triviaState.player.id;
-  const [activeUser, setActiveUser] = useState({});
+  const [activeUser, setActiveUser] = useState<User>({
+    name: "",
+    gameHistory: [],
+  });
 
   useEffect(() => {
-    getUser(storeUser).then((data: any) => setActiveUser(data));
+    getUser(storeUser).then((data: User) => setActiveUser(data));
   }, []);
 
   return (
@@ -22,11 +26,11 @@ const GameHistoryPage = () => {
 
       <section className={styles.statsSection}>
         {activeUser.name != undefined &&
-          activeUser.gameHistory.map((game: any, _key: number) => {
+          activeUser.gameHistory.map((game: Game, _key: number) => {
             return (
               <div className={styles.GHBlock}>
                 <div className={styles.GHBlock__stats}>
-                  <Card text={`Difficutly: ${game.difficulty}`} />
+                  <Card text={`Difficulty: ${game.difficulty}`} />
                   <Card text={`Questions: ${game.questionsBlockId.length}`} />
                   <Card text={`Score: ${game.score}`} />
                 </div>

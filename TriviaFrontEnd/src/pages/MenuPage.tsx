@@ -11,7 +11,7 @@ import Banner from "../components/Banner/Banner";
 
 const MenuPage = () => {
   const dispatch = useDispatch();
-  const triviaState = useSelector((state) => state.trivia);
+  const triviaState = useSelector((state: any) => state.trivia);
   const player = triviaState.player;
   const storeDifficulty = triviaState.difficulty;
   const storeCategory = triviaState.category;

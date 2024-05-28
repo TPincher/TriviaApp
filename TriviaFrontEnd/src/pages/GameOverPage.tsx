@@ -5,7 +5,7 @@ import LinkButton from "../components/LinkButton/LinkButton";
 import Banner from "../components/Banner/Banner";
 
 const GameOverPage = () => {
-  const triviaState = useSelector((state) => state.trivia);
+  const triviaState = useSelector((state: any) => state.trivia);
   const storePlayer = triviaState.player;
   const storeDifficulty = triviaState.difficulty;
   const storeCategory = triviaState.category;

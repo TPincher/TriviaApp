@@ -3,7 +3,7 @@ export const fetchCategories = async () => {
 
   const jsonCategories = await fetchedCategories.json();
   const innerCategories = jsonCategories.trivia_categories;
-  const formattedCategories = innerCategories.map((category) => {
+  const formattedCategories = innerCategories.map((category: any) => {
     return { category: category.name, fetchID: category.id };
   });
 

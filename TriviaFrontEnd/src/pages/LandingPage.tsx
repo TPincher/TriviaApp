@@ -10,7 +10,7 @@ import Banner from "../components/Banner/Banner";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const triviaState = useSelector((state) => state.trivia);
+  const triviaState = useSelector((state: any) => state.trivia);
   const storeUsers = triviaState.player;
   const [users, setUsers] = useState([]);
   const [input, setInput] = useState("");

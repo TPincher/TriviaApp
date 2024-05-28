@@ -13,15 +13,23 @@ import { changeScore } from "../redux/actions";
 import LinkButton from "../components/LinkButton/LinkButton";
 import Banner from "../components/Banner/Banner";
 import Card from "../components/Card/Card";
+import { Question } from "../types/Types";
 
 const GamePage = () => {
   const dispatch = useDispatch();
-  const triviaState = useSelector((state) => state.trivia);
+  const triviaState = useSelector((state: any) => state.trivia);
   const storeUsers = triviaState.player;
   const storeDifficulty = triviaState.difficulty;
   const storeCategory = triviaState.category;
   const [roundActive, setRoundActive] = useState(false);
-  const [roundQuestion, setRoundQuestion] = useState({});
+  const [roundQuestion, setRoundQuestion] = useState<Question>({
+    type: "",
+    difficulty: "",
+    category: "",
+    question: "",
+    answer: "",
+    allAnswers: [],
+  });
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [result, setResult] = useState("");
   const [gameScore, setGameScore] = useState(0);

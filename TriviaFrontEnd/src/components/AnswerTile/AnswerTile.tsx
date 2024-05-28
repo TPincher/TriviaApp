@@ -1,5 +1,4 @@
 import { updateKillerQ } from "../../services/userService";
-import styles from "./AnswerTile.module.scss";
 
 interface Props {
   answer: string;
