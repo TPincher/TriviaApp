@@ -5,7 +5,7 @@ interface Props {
   pAnswers?: String[];
   answer: String;
   sAnswer: String;
-  killerQ: String;
+  killerQ: number;
 }
 
 const GameDetailsCard = (props: Props) => {

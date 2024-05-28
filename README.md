@@ -138,6 +138,12 @@ New Tasks
 
 - Page zoom is not properly responsive. Needs to be looked into and will likely require revamp of styling.
 
+28/5/2024
+
+- Returning to this project after spending a few weeks learning user authentication and Spring security. Have spent the day reassociating myself with the codebase and then squashing bugs in the frontend. I'm down to a single type error on the redux store itself. Once that's done, I want to set up some testing and then deploy it for showcase.
+
+- There's a persistent issue with with the useSelector hook for the Redux store. I can currently bypass it using the 'any' type but will have to read into it more.
+
 What did you struggle with?
 
     What? Why? How?

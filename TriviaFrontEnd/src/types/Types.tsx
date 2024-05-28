@@ -16,18 +16,8 @@ export interface killerQ {
   corrected: boolean;
 }
 
-export interface questionBlock {
-  id: number;
-  gameHistory: gameStats;
-  killerQ: killerQ;
-  questionText: string;
-  answers: string;
-  submittedAnswer: string;
-  correctAnswer: string;
-}
-
 export interface gameStats {
-  questionsBlockId: questionBlock[];
+  questionsBlockId: qBlock[];
   question: string;
   answer: string;
   sAnswer: string;
@@ -41,4 +31,13 @@ export interface Question {
   question: string;
   answer: string;
   allAnswers: [];
+}
+
+export interface qBlock {
+  answers: string;
+  correctAnswer: string;
+  id: number;
+  questionText: string;
+  submittedAnswer: string;
+  killerQ: number;
 }

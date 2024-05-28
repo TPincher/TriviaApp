@@ -2,9 +2,9 @@ import styles from "./Card.module.scss";
 
 interface Props {
   text: string;
-  categoryID?: string;
+  categoryID?: number;
   activeTile?: boolean;
-  action?: React.Dispatch<React.SetStateAction<any>>;
+  action?: (arg1: string, arg2?: number) => void;
 }
 
 const Card = (props: Props) => {

@@ -25,14 +25,12 @@ const MenuPage = () => {
     getUser(storeUser).then((data: any) => setActiveUser(data));
   }, []);
 
-  const handleDifficultySelect = (difficulty: String) => {
-    dispatch(updateDifficulty(difficulty));
-    console.log(storeDifficulty);
+  const handleDifficultySelect = (arg1: string) => {
+    dispatch(updateDifficulty(arg1));
   };
 
-  const handleCategorySelect = (category: String, categoryID: Number) => {
-    dispatch(updateCategory({ name: category, id: categoryID }));
-    console.log(storeCategory);
+  const handleCategorySelect = (arg1: string, arg2?: number) => {
+    dispatch(updateCategory({ name: arg1, id: arg2 as Number }));
   };
 
   return (

@@ -7,7 +7,7 @@ import GameDetailsCard from "../components/GameDetailsCard/GameDetailsCard";
 import AnswerTile from "../components/AnswerTile/AnswerTile";
 import LinkButton from "../components/LinkButton/LinkButton";
 import Banner from "../components/Banner/Banner";
-import { gameStats } from "../types/Types";
+import { gameStats, qBlock } from "../types/Types";
 
 const GameDetailsPage = () => {
   const pathVariables = useParams();
@@ -53,7 +53,7 @@ const GameDetailsPage = () => {
         <section className={styles.GameDetailsPage}>
           {loading && <p>...Loading...</p>}
           {!loading &&
-            gameDetails.questionsBlockId.map((questionBlock) => {
+            gameDetails.questionsBlockId.map((questionBlock: qBlock) => {
               return (
                 <GameDetailsCard
                   question={questionBlock.questionText}
