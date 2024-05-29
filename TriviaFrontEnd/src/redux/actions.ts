@@ -26,7 +26,7 @@ export const changeScore = (score: Number) => ({
   payload: { score },
 });
 
-export const updateQuestions = (question: any) => ({
+export const updateQuestions = (question: any[]) => ({
   type: UPDATE_QUESTIONS,
   payload: { question },
 });

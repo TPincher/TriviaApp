@@ -12,7 +12,7 @@ const initialState = {
     id: -1,
   },
   score: 0,
-  questions: [],
+  questions: [""],
   difficulty: "",
   category: {
     name: "",
