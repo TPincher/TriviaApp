@@ -30,7 +30,7 @@ Requirements / Purpose
     One of the API endpoints should allow filtering questions by failed
     On the frontend, the user should be able to view questions that they answered wrong
     They should be able to attempt those questions again
-    If they answer the question correct, it should get archived in the database
+    If they answer the question correct, it should get archived in the database.
 
 
     purpose of project
